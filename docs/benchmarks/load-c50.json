@@ -1,0 +1,121 @@
+{
+  "measured_at": "2026-10-30T13:12:16.902226+00:00",
+  "commit": "HEAD",
+  "source_sha256": "0dc1e29cc2f044e8887469b75834034749a213c153237b731be612ee33236ba6",
+  "python": "3.14.4",
+  "postgresql": "18.6 (Ubuntu 18.6-0ubuntu0.26.04.1)",
+  "redis": "8.10.3",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "cpu_count": 12,
+  "api_processes": 1,
+  "db_pool_size": 5,
+  "db_max_overflow": 5,
+  "api_rss_sampled_peak_kib": 130360,
+  "warmup": "10 catalog reads per run; warm API for writes; checkout starts without an additional warmup batch",
+  "results": [
+    {
+      "run": 1,
+      "action": "create_order",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 9.789,
+      "requests_per_second": 51.08,
+      "responses": {
+        "201": 500
+      },
+      "latency_ms": {
+        "p50": 936.5,
+        "p95": 1288.76,
+        "p99": 1402.88
+      },
+      "successful": true
+    },
+    {
+      "run": 1,
+      "action": "read_catalog",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 2.036,
+      "requests_per_second": 245.62,
+      "responses": {
+        "200": 500
+      },
+      "latency_ms": {
+        "p50": 155.09,
+        "p95": 434.77,
+        "p99": 553.55
+      },
+      "successful": true
+    },
+    {
+      "run": 2,
+      "action": "create_order",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 10.202,
+      "requests_per_second": 49.01,
+      "responses": {
+        "201": 500
+      },
+      "latency_ms": {
+        "p50": 950.45,
+        "p95": 1794.89,
+        "p99": 2521.87
+      },
+      "successful": true
+    },
+    {
+      "run": 2,
+      "action": "read_catalog",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 2.255,
+      "requests_per_second": 221.7,
+      "responses": {
+        "200": 500
+      },
+      "latency_ms": {
+        "p50": 176.37,
+        "p95": 496.33,
+        "p99": 679.94
+      },
+      "successful": true
+    },
+    {
+      "run": 3,
+      "action": "create_order",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 10.294,
+      "requests_per_second": 48.57,
+      "responses": {
+        "201": 500
+      },
+      "latency_ms": {
+        "p50": 939.22,
+        "p95": 1750.91,
+        "p99": 2641.8
+      },
+      "successful": true
+    },
+    {
+      "run": 3,
+      "action": "read_catalog",
+      "requests": 500,
+      "concurrency": 50,
+      "duration_seconds": 2.176,
+      "requests_per_second": 229.78,
+      "responses": {
+        "200": 500
+      },
+      "latency_ms": {
+        "p50": 176.13,
+        "p95": 479.43,
+        "p99": 554.5
+      },
+      "successful": true
+    }
+  ],
+  "inventory_invariant_violations": 0,
+  "limits": "Local single-host loopback HTTP; no TLS or external network. RSS sampled every 50ms, not total stack memory. No container resource limits. Not an SLA."
+}

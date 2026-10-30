@@ -1,0 +1,16 @@
+{
+  "measured_at": "2026-10-30T12:56:13.148677+00:00",
+  "scenario": "20 concurrent HTTP orders, distinct keys, one unit",
+  "python": "3.14.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "responses": {
+    "201": 1,
+    "409": 19
+  },
+  "latency_ms": {
+    "median": 370.73,
+    "p95": 409.4,
+    "max": 417.16
+  },
+  "limits": "Single local run, warm API, no network latency; not a throughput benchmark or SLA."
+}
