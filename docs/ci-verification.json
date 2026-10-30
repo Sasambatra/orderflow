@@ -1,0 +1,35 @@
+{
+  "recorded_on": "2026-10-30",
+  "repository": "https://github.com/Sasambatra/orderflow",
+  "source_commit": "382a7bbcff32006ed8a3669924516a25214504c2",
+  "workflow_run": "https://github.com/Sasambatra/orderflow/actions/runs/41107674412",
+  "conclusion": "success",
+  "python_matrix": [
+    {
+      "python": "3.13",
+      "tests": 65,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "combined_coverage_percent": 93.12
+    },
+    {
+      "python": "3.14",
+      "tests": 65,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "combined_coverage_percent": 93.04
+    }
+  ],
+  "container": {
+    "conclusion": "success",
+    "checks": [
+      "runtime image build",
+      "fresh database migrations and readiness",
+      "checkout, signed webhook and worker inbox demo",
+      "20 concurrent HTTP requests for one unit",
+      "full pytest suite in development image"
+    ]
+  }
+}

@@ -29,15 +29,22 @@
 Процент относится к Python-пакету `orderflow`; тестовый код, скрипты и миграции не включены в знаменатель.
 Покрытие подпроцессов worker не объединяется с родительским coverage.
 
-## Что не подтверждено в этой среде
+## Проверка в GitHub Actions
 
-Docker CLI и Compose доступны, но Docker Engine socket возвращает `permission denied`.
-Сборка Docker image и полный Compose smoke здесь не выполнялись. Не менялись права
-системного сокета и не запрашивался пароль sudo. Workflow контейнерной проверки подготовлен.
+Репозиторий опубликован: [Sasambatra/orderflow](https://github.com/Sasambatra/orderflow).
+Проверка коммита `382a7bb` в чистом окружении GitHub Actions:
+[CI run 41107674412](https://github.com/Sasambatra/orderflow/actions/runs/41107674412) — **success**.
 
-Репозиторий Git и локальный коммит подготовлены. Новый OrderFlow не опубликован в GitHub:
-в текущем запросе пользователь поручил полную разработку, публикация нового проекта отдельно не запрошена.
-Поэтому прохождение GitHub Actions не заявляется. Результаты таблицы получены локально.
+Все три job прошли: `test (3.13)`, `test (3.14)`, `container`.
+Контейнерная проверка собрала image, применила миграции к пустой БД, дождалась readiness,
+выполнила HTTP-демо с настоящим worker, проверила последнюю единицу и запустила полный pytest
+в development-контейнере. Сводные результаты сохранены в [ci-verification.json](ci-verification.json).
+JUnit и coverage XML доступны в artifacts этого запуска.
+
+Локальный Docker Engine в WSL по-прежнему недоступен по правам; контейнерный запуск
+подтверждён именно в GitHub Actions. Права системного сокета не менялись.
+Текущий статус ветки main показывает [workflow](https://github.com/Sasambatra/orderflow/actions/workflows/ci.yml),
+а приведённая ссылка фиксирует конкретный проверенный коммит.
 
 ## Границы результата
 
