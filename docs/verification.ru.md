@@ -19,6 +19,9 @@
 | HTTP demo | paid, replay заказа/webhook, notification_received=true |
 | Нагрузка | Три серии по 500 заказов и 500 чтений для concurrency 20 и 50; см. benchmarks.md |
 | Python package | Собраны wheel/sdist; wheel установлен в отдельное окружение без editable и отвечает ready вне папки исходников |
+| Чистая установка | requirements-dev.lock установлен обычным pip с `--require-hashes` в новом окружении Python 3.13; pip check прошёл |
+| Создание .env | Независимые секреты, права 600, повторный запуск сохраняет существующий файл |
+| Backup/restore | pg_dump восстановлен в отдельную базу; ревизия схемы верна, SQL-сверка резервов не выявила нарушений |
 | Compose | `docker compose config --quiet` прошёл |
 
 Полные логи локальных запусков лежат в `.local/`, XML покрытия — `coverage.xml`;

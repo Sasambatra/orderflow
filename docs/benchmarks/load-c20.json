@@ -1,7 +1,7 @@
 {
-  "measured_at": "2026-10-30T13:06:20.818563+00:00",
-  "commit": "HEAD",
-  "source_sha256": "f8e2be01cffd5dfcdde64b8873115c90fa4c34040e2aac82db34e7798bdecb14",
+  "measured_at": "2026-10-30T13:18:45.802054+00:00",
+  "commit": "942ba88e0d2a367e4c7e5a1b03e3ff3e29ffd7af",
+  "source_sha256": "8d845d804762b566aa0dfe8d27da6f8b28286bf9dd687330b4273a9e1fddd269",
   "python": "3.14.4",
   "postgresql": "18.6 (Ubuntu 18.6-0ubuntu0.26.04.1)",
   "redis": "8.10.3",
@@ -10,7 +10,7 @@
   "api_processes": 1,
   "db_pool_size": 5,
   "db_max_overflow": 5,
-  "api_rss_sampled_peak_kib": 112364,
+  "api_rss_sampled_peak_kib": 112472,
   "warmup": "10 catalog reads per run; warm API for writes; checkout starts without an additional warmup batch",
   "results": [
     {
@@ -18,15 +18,15 @@
       "action": "create_order",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 9.739,
-      "requests_per_second": 51.34,
+      "duration_seconds": 9.366,
+      "requests_per_second": 53.39,
       "responses": {
         "201": 500
       },
       "latency_ms": {
-        "p50": 384.2,
-        "p95": 467.79,
-        "p99": 506.39
+        "p50": 390.16,
+        "p95": 566.75,
+        "p99": 680.39
       },
       "successful": true
     },
@@ -35,15 +35,15 @@
       "action": "read_catalog",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 2.411,
-      "requests_per_second": 207.36,
+      "duration_seconds": 1.758,
+      "requests_per_second": 284.35,
       "responses": {
         "200": 500
       },
       "latency_ms": {
-        "p50": 91.61,
-        "p95": 143.23,
-        "p99": 169.41
+        "p50": 68.09,
+        "p95": 99.89,
+        "p99": 118.64
       },
       "successful": true
     },
@@ -52,15 +52,15 @@
       "action": "create_order",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 9.961,
-      "requests_per_second": 50.2,
+      "duration_seconds": 10.428,
+      "requests_per_second": 47.95,
       "responses": {
         "201": 500
       },
       "latency_ms": {
-        "p50": 385.56,
-        "p95": 463.17,
-        "p99": 539.98
+        "p50": 413.6,
+        "p95": 510.31,
+        "p99": 587.28
       },
       "successful": true
     },
@@ -69,15 +69,15 @@
       "action": "read_catalog",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 2.304,
-      "requests_per_second": 217.0,
+      "duration_seconds": 2.877,
+      "requests_per_second": 173.82,
       "responses": {
         "200": 500
       },
       "latency_ms": {
-        "p50": 88.58,
-        "p95": 134.52,
-        "p99": 158.97
+        "p50": 110.44,
+        "p95": 168.48,
+        "p99": 195.22
       },
       "successful": true
     },
@@ -86,15 +86,15 @@
       "action": "create_order",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 9.529,
-      "requests_per_second": 52.47,
+      "duration_seconds": 8.707,
+      "requests_per_second": 57.43,
       "responses": {
         "201": 500
       },
       "latency_ms": {
-        "p50": 375.53,
-        "p95": 445.74,
-        "p99": 499.56
+        "p50": 369.64,
+        "p95": 473.22,
+        "p99": 592.23
       },
       "successful": true
     },
@@ -103,15 +103,15 @@
       "action": "read_catalog",
       "requests": 500,
       "concurrency": 20,
-      "duration_seconds": 2.17,
-      "requests_per_second": 230.37,
+      "duration_seconds": 2.621,
+      "requests_per_second": 190.78,
       "responses": {
         "200": 500
       },
       "latency_ms": {
-        "p50": 84.02,
-        "p95": 126.75,
-        "p99": 151.68
+        "p50": 99.25,
+        "p95": 163.24,
+        "p99": 211.78
       },
       "successful": true
     }
