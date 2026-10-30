@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="580" viewBox="0 0 1280 580" role="img" aria-labelledby="title description">
+  <title id="title">OrderFlow: transactional checkout and recoverable events</title>
+  <desc id="description">FastAPI commits an order, reservation and outbox in PostgreSQL. A relay publishes to Redis. Celery processes events into a deduplicated inbox.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101e32"/><stop offset="1" stop-color="#071321"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="none" stroke="#54d7c5" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1280" height="580" rx="24" fill="url(#bg)"/>
+  <g font-family="system-ui,Segoe UI,Arial,sans-serif">
+    <text x="56" y="66" fill="#54d7c5" font-size="17" font-weight="700" letter-spacing="3">ORDERFLOW / PYTHON BACKEND</text>
+    <text x="56" y="122" fill="#f0f6fc" font-size="38" font-weight="700">Reserve atomically. Recover safely.</text>
+    <text x="56" y="157" fill="#a4b6cb" font-size="19">Limited stock · Idempotent checkout · Transactional outbox</text>
+    <g stroke="#314862" stroke-width="1.5" fill="#14263d">
+      <rect x="56" y="220" width="220" height="154" rx="14"/>
+      <rect x="340" y="202" width="410" height="190" rx="14"/>
+      <rect x="822" y="220" width="168" height="154" rx="14"/>
+      <rect x="1056" y="220" width="168" height="154" rx="14"/>
+    </g>
+    <path d="M277 297H326M752 297H808M991 297H1042" stroke="#54d7c5" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+    <g fill="#f0f6fc" font-size="24" font-weight="650">
+      <text x="82" y="263">FastAPI</text><text x="366" y="246">PostgreSQL</text><text x="848" y="263">Redis</text><text x="1080" y="263">Celery</text>
+    </g>
+    <g fill="#a4b6cb" font-size="17">
+      <text x="82" y="299">Orders + mock HMAC</text><text x="82" y="325">JWT + owner checks</text>
+      <text x="366" y="282">Order + reservation + outbox</text><text x="366" y="312">One transaction · Sorted row locks</text><text x="366" y="345">on_hand ≥ reserved ≥ 0</text>
+      <text x="848" y="299">Event queue</text><text x="848" y="325">Retryable</text>
+      <text x="1080" y="299">Worker + Beat</text><text x="1080" y="325">Unique inbox</text>
+    </g>
+    <rect x="56" y="438" width="1168" height="78" rx="12" fill="#113b3b" stroke="#2a726c"/>
+    <text x="82" y="470" fill="#91eadc" font-size="17" font-weight="650">DATABASE FIRST</text>
+    <text x="82" y="497" fill="#d6f2ee" font-size="18">Unprocessed events remain recoverable. Repeated requests and messages do not duplicate the business effect.</text>
+    <text x="56" y="551" fill="#7c92ad" font-size="15">FastAPI · PostgreSQL · SQLAlchemy · Redis · Celery · pytest · Docker Compose</text>
+  </g>
+</svg>

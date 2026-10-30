@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Sasambatra/orderflow/security/advisories/new
+    about: Use private reporting for sensitive findings.

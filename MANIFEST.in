@@ -1,7 +1,8 @@
-include LICENSE README.md README.en.md IMPLEMENTATION_GUIDE.ru.md
+include LICENSE README.md README.ru.md CONTRIBUTING.md SECURITY.md CHANGELOG.md IMPLEMENTATION_GUIDE.ru.md
 include alembic.ini pyproject.toml Makefile Dockerfile compose.yaml
 include requirements.lock requirements-dev.lock .env.example .env.test.example
 recursive-include migrations *.py *.mako
 recursive-include docs *.md *.json
+recursive-include docs/assets *.svg
 recursive-include scripts *.py
 recursive-include tests *.py
