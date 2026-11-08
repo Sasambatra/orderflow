@@ -1,18 +1,19 @@
-# A five-minute review
+# Демонстрация за пять минут
 
-This backend is reviewed through HTTP, database invariants and failure scenarios. The payment provider is a mock.
+**Русский** · [English](demo.en.md)
 
-## 1. Run the complete checkout
+Backend проверяется через HTTP, инварианты базы и сценарии отказа. Оплата тестовая.
+Сначала выполните [быстрый запуск](../README.md).
 
-Follow the [quick start](../README.md), then run:
+## 1. Заказ, повтор запроса и оплата
 
 ```bash
 docker compose exec -T api python scripts/demo.py
 ```
 
-The script logs in with generated demo credentials, creates an order, repeats checkout with the same key, creates a payment attempt, sends a signed success event, repeats that event, then waits for the worker-delivered inbox notification.
-
-Example result shape (the order ID changes each run):
+Скрипт использует локальные демо-учётные данные, создаёт заказ, повторяет запрос
+с тем же ключом, создаёт попытку оплаты, отправляет подписанный success, повторяет
+это событие и ждёт уведомления, доставленного настоящим worker.
 
 ```json
 {
@@ -24,26 +25,35 @@ Example result shape (the order ID changes each run):
 }
 ```
 
-The same command is exercised by the container CI job. A successful `paid` response alone does not complete the demo: it must observe the notification through the API.
+UUID меняется при каждом запуске. Недостаточно увидеть `paid`: требуется получить
+уведомление через API. Эту же команду выполняет контейнерный CI.
 
-## 2. Race for the last unit
+## 2. Последняя единица товара
 
 ```bash
 docker compose exec -T api python scripts/benchmark.py
 ```
 
-This creates a dedicated SKU with exactly one unit, releases 20 HTTP requests with distinct keys, asserts one `201` and nineteen `409`, saves a local report, then cancels the winning reservation. Expected stock conflicts are separate from server errors.
+Для отдельного SKU с одной единицей запускаются 20 HTTP-запросов с разными
+ключами. Ожидаются один `201` и 19 `409`, затем резерв победителя отменяется.
+Это проверка корректности; ожидаемый конфликт остатков не является ошибкой сервера.
+Тест `test_twenty_retries_one_order` в [конкурентном наборе](../tests/concurrency/test_races.py)
+проверяет другой случай: один ключ, один заказ, 19 повторных ответов.
 
-For the other retry scenario, inspect `test_twenty_retries_one_order` in [the concurrency suite](../tests/concurrency/test_races.py). Twenty identical keys produce one order and nineteen response replays.
+## 3. Восстановление
 
-## 3. Explain recovery
+[E2e-тест сбоя Redis](../tests/e2e/test_redis_recovery.py) останавливает отдельный
+брокер, создаёт заказ настоящим HTTP-запросом с уже выданным токеном, возвращает
+Redis/worker и проверяет одно уведомление.
+[Outbox-тесты](../tests/integration/test_outbox.py) проверяют потерянное сообщение,
+устаревшую аренду, повторы consumer и восстановление dead events.
+[Платёжные тесты](../tests/integration/test_payments.py) показывают поздний или
+дополнительный успех с состоянием `refund_required`.
 
-Read the [outage test](../tests/e2e/test_redis_recovery.py): it starts a private Redis process and API, stops Redis, creates a real HTTP order with an existing token, then restarts the broker and worker and verifies one notification.
+## 4. Решения и границы
 
-The [outbox tests](../tests/integration/test_outbox.py) also cover a lost queued message, stale lease ownership, duplicate processing and dead-event repair. The [payment tests](../tests/integration/test_payments.py) show late success and an additional successful payment becoming `refund_required`.
-
-## 4. Inspect the tradeoffs
-
-Review [architecture](architecture.ru.md), [the runbook](runbook.ru.md) and [measured benchmarks](benchmarks.md). Explain where the implementation guarantees a single business effect and where an external email/bank integration would require its own protocol.
-
-Do not show `.env`, demo passwords or bearer tokens when recording a walkthrough. `/docs` is a local development address, not a hosted public demo.
+Откройте [архитектуру](architecture.ru.md), [эксплуатацию](runbook.ru.md) и
+[измерения](benchmarks.md). Объясните, где обеспечен однократный бизнес-эффект,
+а где внешнему провайдеру понадобится собственный протокол.
+Не показывайте `.env`, пароли и токены в записи демонстрации.
+`/docs` — локальный адрес, публичный сервер не размещён.

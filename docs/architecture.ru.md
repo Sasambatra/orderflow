@@ -1,5 +1,7 @@
 # Архитектура OrderFlow
 
+**Русский** · [English](architecture.en.md)
+
 ## Компоненты
 
 Модульный монолит: HTTP и Celery используют одни сервисы и SQLAlchemy-модели.
